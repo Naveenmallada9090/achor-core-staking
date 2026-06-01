@@ -11,13 +11,16 @@ pub struct CreateCollection<'info> {
     #[account(mut)]
     pub collection: Signer<'info>,
 
+    /// CHECK: This is a PDA derived from seeds and used as the update authority for the collection.
     #[account(
         seeds = [b"update_authority", collection.key().as_ref()],
         bump,
     )]
+    /// CHECK: Checked via seeds and bump in the account constraints
     pub update_authority: UncheckedAccount<'info>,
     pub system_program: Program<'info, System>,
    
+    /// CHECK: This is the MPL Core program address, constrained by the `address` attribute below.
     #[account(address = MPL_CORE_ID)]
     pub mpl_core_program: UncheckedAccount<'info>,
 }

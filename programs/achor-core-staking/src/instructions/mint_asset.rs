@@ -14,6 +14,7 @@ pub struct MintAsset<'info> {
     #[account(mut)]
     pub collection: Account<'info, BaseCollectionV1>,
 
+    /// CHECK: This is a PDA derived from seeds and used as the update authority for the collection.
     #[account(
         seeds = [b"update_authority", collection.key().as_ref()],
         bump,
@@ -21,6 +22,7 @@ pub struct MintAsset<'info> {
     pub update_authority: UncheckedAccount<'info>,
     pub system_program: Program<'info, System>,
 
+    /// CHECK: This is the MPL Core program address, constrained by the `address` attribute below.
     #[account(address = MPL_CORE_ID)]
     pub mpl_core_program: UncheckedAccount<'info>,
 }

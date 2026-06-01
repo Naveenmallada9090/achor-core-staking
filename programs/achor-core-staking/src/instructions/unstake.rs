@@ -33,6 +33,7 @@ pub struct Unstake<'info> {
     )]
     pub collection: Account<'info, BaseCollectionV1>,
 
+    /// CHECK: This is a PDA derived from seeds and used as the update authority for the collection.
     #[account(
         seeds = [b"update_authority", collection.key().as_ref()],
         bump,
@@ -55,6 +56,7 @@ pub struct Unstake<'info> {
     pub associated_token_program: Program<'info, AssociatedToken>,
     pub system_program: Program<'info, System>,
 
+    /// CHECK: This is the MPL Core program address, constrained by the `address` attribute below.
     #[account(address = Pubkey::from(MPL_CORE_ID.to_bytes()))]
     pub mpl_core_program: UncheckedAccount<'info>,
 }

@@ -19,6 +19,7 @@ pub struct Initialize<'info> {
     #[account(has_one = update_authority @ ErrorCode::InvalidUpdateAuthority)]
     pub collection: Account<'info, BaseCollectionV1>,
 
+    /// CHECK: This is a PDA derived from seeds and used as the update authority for the collection.
     #[account(
         seeds = [b"update_authority", collection.key().as_ref()],
         bump,
