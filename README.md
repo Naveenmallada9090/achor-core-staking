@@ -3,7 +3,7 @@
 Anchor program for staking MPL Core NFTs.  
 Built with `anchor 0.31.x` and `mpl-core 0.11.x`.
 
-## What it does
+## What it does  
 
 - Creates/initializes a stake-ready collection (`create_collection`, `initialize`).
 - Mints NFTs into that collection (`mint_asset`).
